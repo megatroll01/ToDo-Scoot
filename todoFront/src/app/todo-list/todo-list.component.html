@@ -1,0 +1,54 @@
+<div class="container">
+    <mat-card class="add-card">
+      <h3>Add New Todo</h3>
+      <input class="mg-10 input-border" type="text" [(ngModel)]="newTodo.title" placeholder="Title">
+      <input class="mg-10 input-border" type="text" [(ngModel)]="newTodo.description" placeholder="Description">
+      <input class="mg-10 input-border" type="date" [(ngModel)]="newTodo.dueDate" placeholder="Due Date">
+      <select class="mg-10 input-border" [(ngModel)]="newTodo.priority" placeholder="Priority">
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
+      </select>
+      <span *ngIf="!fieldValid"  style="color: red; margin: 15px;">Please fill in all required fields.</span>
+      <button class="mg-10" mat-raised-button color="primary" (click)="addTodo()">Add Todo</button>
+    </mat-card>
+    <mat-card class="list-card">
+      <h2>To-Do List</h2>
+      <input class="mg-10 input-border" type="text" [(ngModel)]="filter" placeholder="Filter by description" (input)="updateFilter()">
+      <select class="mg-10 input-border" [(ngModel)]="priority" placeholder="Filter by priority" >
+        <option value="0">All</option>
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
+      </select>
+      <button class="mg-10" mat-raised-button (click)="loadTodos()">Load Todos</button>
+      <div *ngIf="todos.length > 0">
+        <mat-list>
+          <mat-list-item *ngFor="let todo of todos" [ngClass]="{ 'green-background': todo.done === 2 }">
+            <div>
+              <input class="mg-10 input-border" type="text" [(ngModel)]="todo.title" placeholder="Title">
+              <input class="mg-10 input-border" type="text" [(ngModel)]="todo.description" placeholder="Description">
+              <input class="mg-10 input-border" type="date" [(ngModel)]="todo.dueDate" placeholder="Due Date">
+              <select class="mg-10 input-border" [(ngModel)]="todo.priority" placeholder="Priority">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+              </select>
+              <button mat-icon-button color="primary" (click)="updateTodo(todo)">
+                <mat-icon>save</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteTodo(todo)">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" *ngIf="todo.done === 1" (click)="markAsDone(todo)">
+                <mat-icon>done</mat-icon>
+              </button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div *ngIf="todos.length === 0">
+        No task.
+      </div>
+    </mat-card>
+  </div>

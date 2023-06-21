@@ -1,0 +1,37 @@
+.container {
+    display: grid;
+    grid-template-columns: 30% auto;
+    gap: 20px;
+    padding: 2%;
+  }
+  
+  .add-card {
+    padding: 20px;
+    background-color: lightgray;
+    border-radius: 15px;
+  }
+  
+  .list-card {
+    padding: 20px;
+    overflow-y: auto;
+    height: 500px;
+    background-color: lightgray;
+    border-radius: 15px;
+  }
+
+  .green-background {
+    background-color: lightgreen;
+    color: white;
+  }
+
+
+  .mg-10{
+    margin: 10px;
+  }
+
+  .input-border{
+	padding: 5px;
+	border: none;
+	margin-bottom: 10px;
+	border-radius: 50px;
+}
